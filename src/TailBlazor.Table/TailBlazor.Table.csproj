@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <PackageId>TailBlazor.Table</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Taylor Watson</Authors>
+    <Company></Company>
+    <PackageTags>Blazor; TailBlazorcss; TailBlazor css; tailwind; tailwindcss; table;</PackageTags>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/TailBlazor/Table</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/TailBlazor/Table</RepositoryUrl>
+    <Description>
+      A Blazor table component based off TailWindCss. It has the bare minimum styles to function with the option to add your own classes. It's built so it can be fully customizable and reusable for any table type.
+    </Description>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+
+  
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.1" />
+  </ItemGroup>
+
+</Project>
