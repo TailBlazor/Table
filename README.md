@@ -26,7 +26,7 @@ Add line to your \_Imports.razor
 @using TailBlazor.Table
 ```
 
-### 3. Create Table Component
+### 2. Create Table Component
 
 Inside your page create your table component with the basic format below. For table styles, use the `TableClass` parameter
 
@@ -41,7 +41,7 @@ Inside your page create your table component with the basic format below. For ta
 </TailBlazorTableTemplate>
 ```
 
-#### 4. Adding the table headers
+### 3. Adding the table headers
 
 for each table header add it's own `<th></th>` with optional styles.
 
@@ -59,7 +59,7 @@ You can also configure the thead styles using the `HeaderClass' parameter on the
     ...
 ```
 
-#### 5. Creating your model
+### 4. Creating your model
 
 To get your `context` you'll have to add the `Items` which is an IEnumerable<TItem>. You'll want to have the class you want to pass in inherit the `ITailBlazorTableModel`.
 
@@ -70,7 +70,7 @@ public class MyClass : ITailBlazorTableModel
 }
 ```
 
-You'll need to implement the classes. For the `ShowChildTemplate`. This allows you to show an additional row on some sort of trigger. More about in #7.
+You'll need to implement the classes. For the `ShowChildTemplate`. This allows you to show an additional row on some sort of trigger. More about below in section 6.
 
 By default your object is accessible via the `context` parameter. You can however rename that via `Context=NewContextName`. Type inference is great but sometimes it doesn't quite get it right. You may also need to pass the table the type `TItem=YourClass`.
 
@@ -89,7 +89,7 @@ You can also like above, pass the table component your body styles like so `Body
 ...
 ```
 
-### 6. More Customization
+### 5. More Customization
 
 By default the table is striped. You can disable that by setting `StripeRows=false` inside the Table component
 
@@ -97,7 +97,7 @@ By default the table is striped. You can disable that by setting `StripeRows=fal
 <TailBlazorTableTemplate StripeRows=false>
 ```
 
-### 7. ChildRow
+### 6. ChildRow
 
 If you have a row that should expand when a user triggers a button. You have access to the `<ChildTemplate></ChildTemplate>` RenderFragment. Setting `ShowChildTemplate` inside your RowTemplate will show the new table row.
 
@@ -109,7 +109,7 @@ Note: There isn't just a property called "ShowChildTemplate". We're assuming thi
 public class MyClass : ITailBlazorTableModel
 {
     ...
-    
+
     public bool ShowChildTemplate {
         get {
             return ShowChildTemplate;
