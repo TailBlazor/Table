@@ -1,8 +1,13 @@
 # TailBlazor.Table
 
+#### Update
+I refactored to push Table more in line with how the other elements are done. Please see changes below.
+
 Blazor Table a basic yet customizable table component for Tailwindcss
 
 Without passing it anything you'll get very basic styles, however giving it it's base classes and you can really make a customizable table that Tailwind is capable of.
+
+
 
 ![Nuget](https://img.shields.io/nuget/v/TailBlazor.Table.svg)
 
@@ -28,16 +33,16 @@ Add line to your \_Imports.razor
 
 ### 2. Create Table Component
 
-Inside your page create your table component with the basic format below. For table styles, use the `TableClass` parameter
+Inside your page create your table component with the basic format below. For table styles, use the `class` parameter. By default default styles are applied. If you choose to override you'll be given blank styles for each section.
 
 ```
-<TailBlazorTableTemplate TableClass="divide-gray-200">
-    <TableHeader>
+<TailBlazorTableTemplate class="divide-gray-200">
+    <TailBlazorTableHeader>
         ...
-    </TableHeader>
-    <RowTemplate>
+    </TailBlazorTableHeader>
+    <TailBlazorTableBody>
         ...
-    </RowTemplate>
+    </TailBlazorTableBody>
 </TailBlazorTableTemplate>
 ```
 
@@ -45,17 +50,17 @@ Inside your page create your table component with the basic format below. For ta
 
 for each table header add it's own `<th></th>` with optional styles.
 
-You can also configure the thead styles using the `HeaderClass' parameter on the parent table component.
+You can also configure the thead styles using the `class' parameter just like the Table Component
 
 ```
-<TailBlazorTableTemplate HeaderClass="bg-gray-50">
-    <TableHeader>
+<TailBlazorTable>
+    <TailBlazorTableHeader class="p-4 bg-gray-50">
         <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Employee Id</th>
         <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">First name</th>
         <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Last name</th>
         <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Email</th>
         <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Contractor</th>
-    </TableHeader>
+    </TailBlazorTableHeader>
     ...
 ```
 
@@ -74,27 +79,30 @@ You'll need to implement the classes. For the `ShowChildTemplate`. This allows y
 
 By default your object is accessible via the `context` parameter. You can however rename that via `Context=NewContextName`. Type inference is great but sometimes it doesn't quite get it right. You may also need to pass the table the type `TItem=YourClass`.
 
-You can also like above, pass the table component your body styles like so `BodyClass="bg-blue-400"`
+You can also like above, pass the tablebody component your styles like so `class="bg-blue-400"`
 
 ```
-<TailBlazorTableTemplate Context="NewContextName" TItem=YourClass Items=youClassList>
-...
- <RowTemplate>
-    <td class="text-gray-700">@NewContextName.Id</td>
-    <td class="text-gray-700">@NewContextName.FirstName</td>
-    <td class="text-gray-700">@NewContextName.LastName</td>
-    <td class="text-gray-700">@NewContextName.Email</td>
-    <td class="text-gray-700">@(NewContextName.IsContractor ? "Yes" : "No")</td>
-</RowTemplate>
-...
+<TailBlazorTable>
+    <TailBlazorTableBody Context="NewContextName" TItem=YourClass Items=youClassList class="bg-blue-400">
+        <RowContent>
+            <td class="text-gray-700">@NewContextName.Id</td>
+            <td class="text-gray-700">@NewContextName.FirstName</td>
+            <td class="text-gray-700">@NewContextName.LastName</td>
+            <td class="text-gray-700">@NewContextName.Email</td>
+            <td class="text-gray-700">@(NewContextName.IsContractor ? "Yes" : "No")</td>
+        </RowContent>
+        <ChildRowContent>
+        ...
+</TailBlazorTable>
+
 ```
 
 ### 5. More Customization
 
-By default the table is striped. You can disable that by setting `StripeRows=false` inside the Table component
+By default the table is striped. You can disable that by setting `StripeRows=false` inside the TableBody component
 
 ```
-<TailBlazorTableTemplate StripeRows=false>
+<TailBlazorTableBody StripeRows=false>
 ```
 
 ### 6. ChildRow
@@ -125,13 +133,13 @@ public class MyClass : ITailBlazorTableModel
 
 
 ```
-<RowTemplate>
+<RowContent>
     ...
     <td>
         <a href="" @onclick="e => NewContextName.ShowChildTemplate = !NewContextName.ShowChildTemplate">Open ChildTemplate</a>
     </td>
-</RowTemplate>
- <ChildTemplate>
+</RowContent>
+ <ChildRowContent>
     <button>Activate Launch Sequence?</button>
-</ChildTemplate>
+</ChildRowContent>
 ```

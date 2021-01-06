@@ -1,0 +1,20 @@
+@namespace TailBlazor.Table
+@typeparam TItem
+
+<tbody class="@Class">
+    @for (int i = 0; i < _items.Count(); i++)
+    {
+        int itemId = i;
+        var item = _items[itemId];
+        <tr @key="item" class="@(StripeRows && (itemId % 2 == 0) ? "bg-gray-50" : "bg-white") @(item.RowClass)">
+            @RowContent(item)
+        </tr>
+
+        @if (item.ShowChildTemplate)
+        {
+            <tr class="bg-white @(item.ChildRowClass)">
+                @ChildRowContent(item)
+            </tr>
+        }
+    }
+</tbody>
