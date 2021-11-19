@@ -35,7 +35,7 @@ Add line to your \_Imports.razor
 
 Inside your page create your table component with the basic format below. For table styles, use the `class` parameter. By default default styles are applied. If you choose to override you'll be given blank styles for each section.
 
-```
+```html
 <TailBlazorTableTemplate class="divide-gray-200">
     <TailBlazorTableHeader>
         ...
@@ -50,9 +50,9 @@ Inside your page create your table component with the basic format below. For ta
 
 for each table header add it's own `<th></th>` with optional styles.
 
-You can also configure the thead styles using the `class' parameter just like the Table Component
+You can also configure the thead styles using the `class` parameter just like the Table Component
 
-```
+```html
 <TailBlazorTable>
     <TailBlazorTableHeader class="p-4 bg-gray-50">
         <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Employee Id</th>
@@ -68,7 +68,7 @@ You can also configure the thead styles using the `class' parameter just like th
 
 To get your `context` you'll have to add the `Items` which is an IEnumerable<TItem>. You'll want to have the class you want to pass in inherit the `ITailBlazorTableModel`.
 
-```
+```csharp
 public class MyClass : ITailBlazorTableModel
 {
     ...
@@ -81,7 +81,7 @@ By default your object is accessible via the `context` parameter. You can howeve
 
 You can also like above, pass the tablebody component your styles like so `class="bg-blue-400"`
 
-```
+```html
 <TailBlazorTable>
     <TailBlazorTableBody Context="NewContextName" TItem=YourClass Items=youClassList class="bg-blue-400">
         <RowContent>
@@ -101,7 +101,7 @@ You can also like above, pass the tablebody component your styles like so `class
 
 By default the table is striped. You can disable that by setting `StripeRows=false` inside the TableBody component
 
-```
+```html
 <TailBlazorTableBody StripeRows=false>
 ```
 
@@ -113,7 +113,7 @@ Treat the ChildTemplate the same as RowTemplate created just under the activated
 
 Note: There isn't just a property called "ShowChildTemplate". We're assuming this is a bool from a DB or something. If you don't have that it could be as simple as assigning a property to false and then assigning that property to the `ShowChildTemplate` method you implemented above.
 
-```
+```csharp
 public class MyClass : ITailBlazorTableModel
 {
     ...
@@ -132,7 +132,7 @@ public class MyClass : ITailBlazorTableModel
 ```
 
 
-```
+```html
 <RowContent>
     ...
     <td>
