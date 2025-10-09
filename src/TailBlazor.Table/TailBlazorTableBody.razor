@@ -2,7 +2,7 @@
 @typeparam TItem
 
 <tbody class="@Class">
-    @for (int i = 0; i < _items.Count(); i++)
+    @for (int i = 0; i < _items.Count; i++)
     {
         int itemId = i;
         var item = _items[itemId];
@@ -10,7 +10,7 @@
             @RowContent(item)
         </tr>
 
-        @if (item.ShowChildTemplate)
+        @if (item.ShowChildTemplate && ChildRowContent is not null)
         {
             <tr class="bg-white @(item.ChildRowClass)">
                 @ChildRowContent(item)
@@ -18,3 +18,4 @@
         }
     }
 </tbody>
+

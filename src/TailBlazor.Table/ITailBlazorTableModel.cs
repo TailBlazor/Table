@@ -1,4 +1,4 @@
-﻿namespace TailBlazor.Table
+namespace TailBlazor.Table
 {
     public interface ITailBlazorTableModel
     {
@@ -7,3 +7,4 @@
         bool ShowChildTemplate { get; }
     }
 }
+
