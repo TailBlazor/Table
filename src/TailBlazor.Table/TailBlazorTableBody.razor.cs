@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Components;
 
 namespace TailBlazor.Table
@@ -27,7 +24,7 @@ namespace TailBlazor.Table
 
         protected override void OnParametersSet()
         {
-            _items = (Items ?? Enumerable.Empty<TItem>()).ToList();
+            _items = Items.ToList();
         }
     }
 }
